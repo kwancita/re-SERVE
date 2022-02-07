@@ -1,21 +1,18 @@
 import {useState} from 'react'
 
-function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
-    // const [resId, setResId] = useState('')
+function EditForm(setEdit, reserve, onUpdate) {
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
     const [guest, setGuest] = useState('')
     const [errors, setErrors] = useState([])
 
-    function handleSubmit(e){
-        e.preventDefault();
-        fetch('/bookings',{
-            method: 'POST',
+    function handleUpdate(){
+        fetch(`/bookings/${reserve.id}`,{
+            method: "PATCH",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                restaurant_id:restaurantId,
                 date_booked:date,
                 time_booked:time,
                 guest:guest
@@ -24,7 +21,7 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
         .then((r) => {
             if (r.ok){
                 r.json().then((newRes) => {
-                    onAddRes(newRes)
+                    onUpdate(newRes)
                     setDate("")
                     setTime("")
                     setGuest("")
@@ -34,13 +31,11 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
             }
         });
     }
+    console.log(reserve)
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <button onClick={()=>setReserve(false)} >x</button>
-                <p>Hi, {currentUser.username}</p>
-                <h3>Resavation for restaurant_name</h3>
+            <form onSubmit={handleUpdate}>
                 <input 
                     type="date"
                     name="date"
@@ -65,11 +60,11 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
                 {errors.map((err) => (
                     <li key={err}>{err}</li>
                 ))}
-                <button onClick={()=>setReserve(false)} >Cancel</button>
+                <button onClick={()=>setEdit(false)} >Cancel</button>
                 <button type="submit">Confirm</button>
             </form>
         </div>
     )
 }
 
-export default Formres
+export default EditForm

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function NavBar({setCurrentUser}) {
 
@@ -15,9 +15,9 @@ function NavBar({setCurrentUser}) {
     
     return (
         <div>
-            <h2>re-SERVE</h2>
-            <h2>home</h2>
-            <h2>account</h2>
+            <h2><Link to="/">re-SERVE</Link></h2>
+            <h2><Link to="/">home</Link></h2>
+            <h2><Link to="/me">account</Link></h2>
             <button onClick={handleLogout}>logout</button>
         </div>
     )

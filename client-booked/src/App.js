@@ -1,9 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-// import { BrowserRouter as Router } from "react-router-dom";
-// import In from './components/In';
-// import Out from './components/Out';
 
 import { Routes, Route } from "react-router-dom";
 import ResDetails from './components/ResDetails';
@@ -12,11 +9,13 @@ import ResPage from './components/ResPage';
 import Reserve from './components/Reserve';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
+import Account from './components/Account';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
+  const [reservations, setReservations] = useState([])
   console.log(currentUser);
   useEffect(() => {
     fetch("/me", {
@@ -33,8 +32,18 @@ function App() {
     });
   }, []);
 
+  useEffect(()=>{
+    fetch("/bookings")
+    .then((r)=>r.json())
+    .then((setReservations))
+  },[])
+
   if (!authenticated){
     return <div></div>
+  }
+  
+  function handleAddRes(newRes){
+    setReservations([...reservations, newRes])
   }
 
   return (
@@ -42,24 +51,12 @@ function App() {
       <NavBar setCurrentUser={setCurrentUser} />
         <Routes>
           <Route path="/" element={<ResPage />} />
+          <Route path="/me" element={<Account currentUser={currentUser} reservations={reservations} setReservations={setReservations}/>} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
-          <Route path="/restaurants/new" element={<Reserve />} />
-          <Route path="/restaurants/:id" element={<ResDetails currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
-          
+          <Route path="/bookings/new" element={<Reserve handleAddRes={handleAddRes} />} />
+          <Route path="/restaurants/:id" element={<ResDetails currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />  
         </Routes>
-      {/* <Router>
-        {currentUser? (
-          <In
-            setCurrentUser={setCurrentUser} 
-            currentUser={currentUser}
-          />
-        ):(
-          <Out 
-            setCurrentUser={setCurrentUser}
-          />
-        )}
-      </Router> */}
     </div>
   );
 }

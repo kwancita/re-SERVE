@@ -16,6 +16,7 @@ function ResDetails({currentUser, setCurrentUser}) {
         })
     },[id])
     // console.log(restaurant)
+    
     const { name, address, menu, image, cuisine } = restaurant
 
     return (
@@ -29,7 +30,7 @@ function ResDetails({currentUser, setCurrentUser}) {
 
             
             <button onClick={()=>{setReserve(true)}}>Resavation</button>
-            {reserve && <Reserve setReserve={setReserve} currentUser={currentUser} setCurrentUser={setCurrentUser={setCurrentUser}} />}
+            {reserve && <Reserve restaurantId={restaurant.id} setReserve={setReserve} currentUser={currentUser} setCurrentUser={setCurrentUser={setCurrentUser}} />}
         </div>
     )
 }
