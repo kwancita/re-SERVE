@@ -1,11 +1,11 @@
 import Formres from "./Formres"
 import Unauth from "./Unauth"
 
-function Reserve({setReserve,handleAddRes, currentUser, setCurrentUser, restaurantId}) {
+function Reserve({setReserve,handleAddRes, currentUser, setCurrentUser, restaurantId,restaurant}) {
     return (
         <div>
             {currentUser? (
-                <Formres restaurantId={restaurantId} setReserve={setReserve} currentUser={currentUser} onAddRes={handleAddRes} />
+                <Formres restaurant={restaurant} restaurantId={restaurantId} setReserve={setReserve} currentUser={currentUser} onAddRes={handleAddRes} />
             ):(
                 <Unauth setCurrentUser={setCurrentUser}/>
             )}

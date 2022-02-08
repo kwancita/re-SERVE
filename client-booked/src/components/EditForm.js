@@ -34,9 +34,10 @@ function EditForm(setEdit, reserve, onUpdate) {
     console.log(reserve)
 
     return (
-        <div>
+        <div className="items-left">
             <form onSubmit={handleUpdate}>
                 <input 
+                    className="w-48 rounded-sm p-0.5 mt-1"
                     type="date"
                     name="date"
                     value={date}
@@ -44,6 +45,7 @@ function EditForm(setEdit, reserve, onUpdate) {
                     onChange={(e) => setDate(e.target.value)}
                 />
                 <input 
+                    className="w-48 rounded-sm p-0.5 mt-1"
                     type="time"
                     name="time"
                     value={time}
@@ -51,6 +53,7 @@ function EditForm(setEdit, reserve, onUpdate) {
                     onChange={(e) => setTime(e.target.value)}
                 />
                 <input 
+                    className="w-48 rounded-sm p-0.5 mt-1"
                     type="number"
                     name="guest"
                     value={guest}
@@ -58,10 +61,12 @@ function EditForm(setEdit, reserve, onUpdate) {
                     onChange={(e) => setGuest(e.target.value)}
                 />
                 {errors.map((err) => (
-                    <li key={err}>{err}</li>
+                    <li className="text-red-600" key={err}>{err}</li>
                 ))}
-                <button onClick={()=>setEdit(false)} >Cancel</button>
-                <button type="submit">Confirm</button>
+                <div className="my-4 space-x-4">
+                    <button className="bg-blue-500 px-2 text-sm py-0.5 rounded-sm text-white" onClick={()=>setEdit(false)} >Cancel</button>
+                    <button className="bg-blue-500 px-2 text-sm py-0.5 rounded-sm text-white" type="submit">Confirm</button>
+                </div>  
             </form>
         </div>
     )

@@ -45,10 +45,11 @@ function LoginForm({setCurrentUser}) {
     }
 
     return (
-        <div>
+        <div className="p-6 mx-10 bg-blue-300 rounded-md">
             <form onSubmit={handleSubmit}>
-                <h2>Log In here</h2>
+                <h2 className="text-lg font-semibold">Log In here</h2>
                 <input 
+                    className="rounded-sm p-1 mr-2 mt-1"
                     id="usernname-login"
                     type="text"
                     name="username"
@@ -57,6 +58,7 @@ function LoginForm({setCurrentUser}) {
                     onChange={handleChange}
                 />
                 <input 
+                    className="rounded-sm p-1 mr-2 mt-1"
                     id="password-login"
                     type="password"
                     name="password"
@@ -64,9 +66,9 @@ function LoginForm({setCurrentUser}) {
                     value={formData.password}
                     onChange={handleChange}
                 />
-                <span>{errors}</span>
-                <button type="submit">Login</button>
-                <p>No account yet? <Link to="/signup">Sign Up</Link></p>
+                <span className="text-red-600">{errors}</span>
+                <button className="bg-blue-500 px-2 py-0.5 rounded-sm text-white" type="submit">Login</button>
+                <p className="pt-2 italic">No account yet? <Link to="/signup">Sign Up</Link></p>
             </form>
         </div>
     )

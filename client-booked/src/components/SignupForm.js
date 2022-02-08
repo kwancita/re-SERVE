@@ -46,38 +46,49 @@ function SignupForm({setCurrentUser}) {
     }
 
     return (
-        <div>
+        <div className="p-6 mx-10 bg-blue-300 rounded-md mt-12">
             <form onSubmit={handleSubmit}>
-                <h2>Sign Up here</h2>
-                <input 
-                    id = "username-signup"
-                    type = "text"
-                    placeholder="Username"
-                    name = "username"
-                    value = {formData.username}
-                    onChange = {handleChange}
-                />
-                <input 
-                    id = "email-signup"
-                    type = "text"
-                    placeholder="Email"
-                    name = "email"
-                    value = {formData.email}
-                    onChange = {handleChange}
-                />
-                <input 
-                    id = "password-signup"
-                    type = "password"
-                    placeholder="Password"
-                    name = "password"
-                    value = {formData.password}
-                    onChange = {handleChange}
-                />
+                <h2 className="text-lg font-semibold text-center pb-2">Sign Up here</h2>
+                <div className="flex justify-center">
+                    <input 
+                        className="rounded-sm p-1 mr-2 mt-1"
+                        id = "username-signup"
+                        type = "text"
+                        placeholder="Username"
+                        name = "username"
+                        value = {formData.username}
+                        onChange = {handleChange}
+                    />
+                </div>
+                <div className="flex justify-center">
+                    <input 
+                        className="rounded-sm p-1 mr-2 mt-1"
+                        id = "email-signup"
+                        type = "text"
+                        placeholder="Email"
+                        name = "email"
+                        value = {formData.email}
+                        onChange = {handleChange}
+                    />
+                </div>
+                <div className="flex justify-center">
+                    <input 
+                        className="rounded-sm p-1 mr-2 mt-1"
+                        id = "password-signup"
+                        type = "password"
+                        placeholder="Password"
+                        name = "password"
+                        value = {formData.password}
+                        onChange = {handleChange}
+                    />
+                </div>
+                <div className="flex justify-center mt-4">
+                    <button className="bg-blue-500 px-2 py-0.5 rounded-sm text-white" type="submit">Submit</button>
+                </div>
                 {errors.map((err) => (
-                    <li key={err}>{err}</li>
+                        <li className="text-red-600 text-center" key={err}>{err}</li>
                 ))}
-                <button type="submit">Submit</button>
-                <p>Already have an account? <Link to="/login" replace >Login</Link></p>
+                <p className="pt-2 italic text-center">Already have an account? <Link to="/login" replace >Login</Link></p>
             </form>
         </div>
     )

@@ -19,16 +19,18 @@ function UserRes({reservations, setReservations}) {
     }
     
     return (
-        <div>
-            <h1>Your reservations</h1>
-            {reservations.map((reserve)=>(
-                <Reservation 
-                    key={reserve.id}
-                    reserve={reserve}
-                    onUpdate={handleupdate}
-                    onDelete={handleDelete}
-                />
-            ))}
+        <div className="flex justify-center">
+            <div className="bg-blue-200 mx-10 my-6 rounded-md p-6 w-1/2">
+                <h1 className="text-lg font-semibold pb-2">Your reservations</h1>
+                {reservations.map((reserve)=>(
+                    <Reservation 
+                        key={reserve.id}
+                        reserve={reserve}
+                        onUpdate={handleupdate}
+                        onDelete={handleDelete}
+                    />
+                ))}
+            </div>
         </div>
     )
 }

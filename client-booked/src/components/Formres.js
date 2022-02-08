@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
+function Formres({setReserve, currentUser, onAddRes, restaurantId, restaurant}) {
     // const [resId, setResId] = useState('')
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
@@ -36,12 +36,12 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
     }
 
     return (
-        <div>
+        <div className="p-6 mx-10 bg-blue-300 rounded-md">
             <form onSubmit={handleSubmit}>
-                <button onClick={()=>setReserve(false)} >x</button>
-                <p>Hi, {currentUser.username}</p>
-                <h3>Resavation for restaurant_name</h3>
+                <p className="font-semibold text-lg">Hi, {currentUser.username}</p>
+                <h3 className="mb-4">When would you like to make the resavation for {restaurant.name}?</h3>
                 <input 
+                    className="rounded-sm p-1 mr-2 mt-1"
                     type="date"
                     name="date"
                     value={date}
@@ -49,6 +49,7 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
                     onChange={(e) => setDate(e.target.value)}
                 />
                 <input 
+                    className="rounded-sm p-1 mr-2 mt-1"
                     type="time"
                     name="time"
                     value={time}
@@ -56,6 +57,7 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
                     onChange={(e) => setTime(e.target.value)}
                 />
                 <input 
+                    className="rounded-sm p-1 mr-2 mt-1"
                     type="number"
                     name="guest"
                     value={guest}
@@ -63,10 +65,12 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId}) {
                     onChange={(e) => setGuest(e.target.value)}
                 />
                 {errors.map((err) => (
-                    <li key={err}>{err}</li>
+                    <li className="text-red-600" key={err}>{err}</li>
                 ))}
-                <button onClick={()=>setReserve(false)} >Cancel</button>
-                <button type="submit">Confirm</button>
+                <div className="my-4 space-x-4">
+                    <button className="bg-blue-500 px-2 py-0.5 rounded-sm text-white" onClick={()=>setReserve(false)} >Cancel</button>
+                    <button className="bg-blue-500 px-2 py-0.5 rounded-sm text-white" type="submit">Confirm</button>
+                </div>
             </form>
         </div>
     )
