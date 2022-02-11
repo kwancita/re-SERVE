@@ -11,6 +11,7 @@ import Reserve from './components/Reserve';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import Account from './components/Account';
+import Formres from './components/Formres';
 
 function App() {
 
@@ -33,6 +34,14 @@ function App() {
     });
   }, []);
 
+  const [restaurants, setRestaurants] = useState([])
+
+    useEffect(()=>{
+        fetch("/restaurants")
+        .then((r)=>r.json())
+        .then((setRestaurants))
+    },[])
+
   useEffect(()=>{
     fetch("/bookings")
     .then((r)=>r.json())
@@ -51,11 +60,12 @@ function App() {
     <div className="App">
       <NavBar setCurrentUser={setCurrentUser} />
         <Routes>
-          <Route path="/" element={<ResPage />} />
-          <Route path="/me" element={<Account currentUser={currentUser} reservations={reservations} setReservations={setReservations}/>} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/" element={<ResPage restaurants={restaurants}/>} />
+          <Route path="/me" element={<Account currentUser={currentUser} setCurrentUser={setCurrentUser} reservations={reservations} setReservations={setReservations}/>} />
+          <Route path="/login" element={<LoginForm setCurrentUser={setCurrentUser} restaurants={restaurants}/>} />
+          <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} restaurants={restaurants} />} />
           <Route path="/bookings/new" element={<Reserve handleAddRes={handleAddRes} />} />
+          {/* <Route path="/bookings/new" element={<Formres handleAddRes={handleAddRes}/>} /> */}
           <Route path="/restaurants/:id" element={<ResDetails currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />  
         </Routes>
     </div>

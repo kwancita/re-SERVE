@@ -1,12 +1,19 @@
 import {useState} from 'react'
 
-function EditForm(setEdit, reserve, onUpdate) {
+function EditForm({setEdit, reserve, onUpdate}) {
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
-    const [guest, setGuest] = useState('')
+    const [guest, setGuest] = useState(reserve.guest)
     const [errors, setErrors] = useState([])
 
-    function handleUpdate(){
+    function handleUpdateRes(updatedRes) {
+        onUpdate(updatedRes)
+    }
+
+    console.log(reserve)
+
+    function handleFormUpdate(e) {
+        e.preventDefault();
         fetch(`/bookings/${reserve.id}`,{
             method: "PATCH",
             headers: {
@@ -21,7 +28,7 @@ function EditForm(setEdit, reserve, onUpdate) {
         .then((r) => {
             if (r.ok){
                 r.json().then((newRes) => {
-                    onUpdate(newRes)
+                    handleUpdateRes(newRes)
                     setDate("")
                     setTime("")
                     setGuest("")
@@ -31,11 +38,10 @@ function EditForm(setEdit, reserve, onUpdate) {
             }
         });
     }
-    console.log(reserve)
 
     return (
         <div className="items-left">
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleFormUpdate}>
                 <input 
                     className="w-48 rounded-sm p-0.5 mt-1"
                     type="date"

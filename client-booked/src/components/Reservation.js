@@ -2,7 +2,8 @@ import { useState } from "react"
 import EditForm from "./EditForm"
 
 function Reservation({reserve, onUpdate, onDelete}) {
-    const {restaurant, day_booked, time_booked, guest} = reserve
+    // const {restaurant, day_booked, time_booked, guest} = reserve
+    const {restaurant, guest} = reserve
     const [edit, setEdit] = useState(false)
 
     function handleDelete() {
@@ -17,12 +18,12 @@ function Reservation({reserve, onUpdate, onDelete}) {
             <div className="rounded-sm w-36 bg-blue-400 text-left pl-2 pt-3 mr-2">
                 <span>{restaurant.name}</span>
             </div>
-            <div className="rounded-sm w-48 bg-blue-400 text-left pl-2 mr-2">
+            {/* <div className="rounded-sm w-48 bg-blue-400 text-left pl-2 mr-2">
                 <span>{day_booked}</span>
             </div>
             <div className="rounded-sm w-48 bg-blue-400 text-left pl-2 mr-2">
                 <span>{time_booked}</span>
-            </div>
+            </div> */}
             <div className="rounded-sm w-12 text-center bg-blue-400 text-left pt-3 mr-2">
                 <span>{guest}</span>
             </div>

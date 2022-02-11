@@ -1,6 +1,7 @@
 import Reservation from "./Reservation"
 
 function UserRes({reservations, setReservations}) {
+    
 
     function handleupdate(updateRes){
         const updateReservations = reservations.map((reservation) => {

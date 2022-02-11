@@ -1,16 +1,7 @@
-import {useState, useEffect} from 'react'
 import Restaurant from "./Restaurant"
 
-function ResPage() {
+function ResPage({restaurants}) {
 
-    const [restaurants, setRestaurants] = useState([])
-
-    useEffect(()=>{
-        fetch("/restaurants")
-        .then((r)=>r.json())
-        .then((setRestaurants))
-    },[])
-    
     return (
         <div className="bg-blue-100">
             <h1 className="text-2xl font-bold py-10 text-center">Asian Cuisine NYC</h1>

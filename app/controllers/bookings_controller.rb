@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
 
     def booking_params
         params.permit(:user_id, :restaurant_id, :day_booked, :time_booked, :guest)
+        # params.permit(:user_id, :restaurant_id, :guest)
     end
 
 end

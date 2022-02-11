@@ -1,11 +1,13 @@
 import {useState} from 'react'
 
 function Formres({setReserve, currentUser, onAddRes, restaurantId, restaurant}) {
-    // const [resId, setResId] = useState('')
+    const [resId, setResId] = useState('')
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
     const [guest, setGuest] = useState('')
     const [errors, setErrors] = useState([])
+
+    // console.log(setDate)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -56,6 +58,20 @@ function Formres({setReserve, currentUser, onAddRes, restaurantId, restaurant}) 
                     placeholder="time ex: 5pm"
                     onChange={(e) => setTime(e.target.value)}
                 />
+                {/* <select className="rounded-sm p-1 mr-2 mt-1">
+                    <option value="time">Time</option>
+                    <option value="12">12 PM</option>
+                    <option value="1">1 PM</option>
+                    <option value="2">2 PM</option>
+                    <option value="3">3 PM</option>
+                    <option value="4">4 PM</option>
+                    <option value="5">5 PM</option>
+                    <option value="6">6 PM</option>
+                    <option value="7">7 PM</option>
+                    <option value="8">8 PM</option>
+                    <option value="9">9 PM</option>
+                    <option value="10">10 PM</option>
+                </select> */}
                 <input 
                     className="rounded-sm p-1 mr-2 mt-1"
                     type="number"

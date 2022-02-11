@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-function SignupForm({setCurrentUser}) {
-
+function SignupForm({setCurrentUser, restaurantId}) {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -32,7 +32,13 @@ function SignupForm({setCurrentUser}) {
             if (r.ok) {
                 r.json().then((user) => {
                     console.log(user);
+                    console.log(setCurrentUser, "check sign up")
                     setCurrentUser(user);
+                    const storeResID = localStorage.getItem("restauID")
+                    const ID = storeResID || restaurantId
+                    const url = ID ? `/restaurants/${ID}` : "/"
+                    // console.log(url)
+                    navigate(url)
                     setFormData({
                         username: "",
                         email: "",

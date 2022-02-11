@@ -3,16 +3,16 @@ import { Navigate, Routes, Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
-function Unauth({setCurrentUser}) {
-    useEffect(() => {
-        <Navigate to="/login" />
-    }, [])
-
+function Unauth({setCurrentUser, restaurantId}) {
+    // useEffect(() => {
+    //     <Navigate to="/me" />
+    // }, [])
+ console.log("signup", setCurrentUser)
     return (
         <div>
             <Routes>
-                <Route exact path="/" element={<LoginForm setCurrentUser={setCurrentUser} />} />
-                <Route exact path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} />} />
+                <Route exact path="/" element={<LoginForm setCurrentUser={setCurrentUser} restaurantId={restaurantId} />} />
+                <Route exact path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} restaurantId={restaurantId}/>} />
             </Routes>
         </div>
     )
